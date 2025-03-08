@@ -11,7 +11,9 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="w-64 bg-[#497D74] text-white min-h-screen">
+
+
+    <aside className="w-64 bg-[#497D74] text-white max-h-screen">
       <div className="p-6">
         <h1 className="text-2xl font-bold flex items-center gap-2">
           <Wallet className="h-8 w-8" />
@@ -22,14 +24,17 @@ const Sidebar = () => {
       <nav className="mt-10">
         {sidebarItems.map((item, index) => (
           <SideBarItem
-            key={item.text}
-            sidebaritem={item}
-            isActive={activeIndex === index}
-            onClick={() => handleToggle(index)}
+          key={item.text}
+          sidebaritem={item}
+          isActive={activeIndex === index}
+          onClick={() => handleToggle(index)}
           />
         ))}
       </nav>
+      <img src="download.png" alt="" />
+
     </aside>
+
   );
 };
 

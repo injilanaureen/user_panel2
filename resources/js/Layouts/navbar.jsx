@@ -10,6 +10,7 @@ import NotificationItem from "./notificationitem";
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const { user } = usePage().props; // Fetch user details from Inertia
+
     console.log(user);  
 
     const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -33,18 +34,12 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className="flex justify-between items-center px-6 py-3 bg-tertiary-color shadow-md relative">
+        <nav className="flex justify-between items-center px-2 py-1 bg-tertiary-color shadow-md relative h-16">
             {/* Navbar Title */}
+            <div className="relative flex items-center h-full">
+        <img src="/corporate4.gif" className="h-32 object-contain" alt="logo" />
+    </div>
 
-            <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-[#497D74]"
-                />
-            </div>
-   
            
 
             {/* Profile and notification Section */}

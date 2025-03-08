@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Mail, Calendar, CreditCard, List } from "lucide-react";
+
 
 const FetchLICBill = () => {
   const [formData, setFormData] = useState({
@@ -77,88 +79,78 @@ const FetchLICBill = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-5 bg-white rounded shadow-md">
-      <h2 className="text-xl font-bold mb-4">Fetch LIC Bill</h2>
-      <form onSubmit={handleSubmit}>
-        <label className="block mb-2">
-          Consumer Number:
+    <div className=" mt-10 p-5 bg-white rounded shadow-md">
+      <h2 className="text-xl font-bold mb-4 text-tertiary-color">Fetch LIC Bill</h2>
+  
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 w-full">
+        {/* Consumer Number */}
+        <div className="relative w-full">
+          <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-violet-500 w-5 h-5" />
           <input
             type="text"
             name="canumber"
             value={formData.canumber}
             onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
+            className="w-full pl-10 p-2 border rounded  text-white outline-none placeholder:text-gray-dark"
+            placeholder="Consumer Number"
             required
           />
-        </label>
-
-        <label className="block mb-2">
-          Email:
+        </div>
+  
+        {/* Email */}
+        <div className="relative w-full">
+          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-900 w-5 h-5" />
           <input
             type="email"
             name="ad1"
             value={formData.ad1}
             onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
+            className="w-full pl-10 p-2 border rounded  text-white outline-none placeholder:text-gray-dark"
+            placeholder="Email"
             required
           />
-        </label>
-
-        <label className="block mb-2">
-          Date:
+        </div>
+  
+        {/* Date */}
+        <div className="relative w-full">
+          <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pink-800 w-5 h-5" />
           <input
             type="date"
             name="ad2"
             value={formData.ad2}
             onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
+            className="w-full pl-10 p-2 border rounded  text-primary_color outline-none placeholder:text-gray-dark"
             required
           />
-        </label>
-
-        <label className="block mb-2">
-          Mode:
+        </div>
+  
+        {/* Mode */}
+        <div className="relative w-full">
+          <List className="absolute left-3 top-1/2 transform -translate-y-1/2 text-yellow-600 w-5 h-5" />
           <select
             name="mode"
             value={formData.mode}
             onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
+            className="w-full pl-10 p-2 border rounded  text-accent_color outline-none"
             required
           >
             <option value="">Select Mode</option>
             <option value="offline">Offline</option>
             <option value="online">Online</option>
           </select>
-        </label>
-
-        {error && <p className="text-red-500">{error}</p>}
-
+        </div>
+  
+        {/* Error Message */}
+        {error && <p className="col-span-2 text-red-500">{error}</p>}
+  
+        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full mt-3 bg-blue-500 text-white p-2 rounded"
+          className="col-span-2 w-full mt-3 bg-primary_color text-btn-text-color py-2 rounded hover:bg-secondary-color transition"
         >
           Fetch Bill
         </button>
       </form>
-
-      {billData && (
-        <div className="mt-5 p-4 bg-gray-100 rounded">
-          <h3 className="font-bold">Bill Details:</h3>
-          <p><strong>Response Code:</strong> {billData.response_code}</p>
-          <p><strong>Status:</strong> {billData.status ? "Success" : "Failed"}</p>
-          <p><strong>Message:</strong> {billData.message}</p>
-          <p><strong>Name:</strong> {billData.name || billData.bill_fetch?.userName}</p>
-          <p><strong>Bill Amount:</strong> {billData.amount || billData.bill_fetch?.billAmount}</p>
-          <p><strong>Net Bill Amount:</strong> {billData.bill_fetch?.billnetamount}</p>
-          <p><strong>Due Date:</strong> {billData.duedate || billData.bill_fetch?.dueDate}</p>
-          <p><strong>Max Bill Amount:</strong> {billData.bill_fetch?.maxBillAmount}</p>
-          <p><strong>Cell Number:</strong> {billData.bill_fetch?.cellNumber}</p>
-          <p><strong>Accept Payment:</strong> {billData.bill_fetch?.acceptPayment ? "Yes" : "No"}</p>
-          <p><strong>Accept Partial Payment:</strong> {billData.bill_fetch?.acceptPartPay ? "Yes" : "No"}</p>
-          <p><strong>Additional Data 2 (ad2):</strong> {billData.ad2 || "N/A"}</p>
-          <p><strong>Additional Data 3 (ad3):</strong> {billData.ad3 || "N/A"}</p>
-        </div>
-      )}
     </div>
   );
 };

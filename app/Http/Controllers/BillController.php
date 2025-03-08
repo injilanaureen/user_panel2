@@ -76,3 +76,4 @@ class BillController extends Controller
     
 }
 
+//fetch lic bill

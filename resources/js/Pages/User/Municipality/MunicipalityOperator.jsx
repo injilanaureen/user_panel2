@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AdminLayout from "@/Layouts/AdminLayout";
 import axios from "axios";
 
 const MunicipalityOperator = () => {
@@ -50,7 +49,6 @@ const MunicipalityOperator = () => {
   
 
   return (
-    <AdminLayout>
       <div className="bg-white rounded-lg shadow-lg p-6 max-w-full">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Municipality Operators</h1>
@@ -131,7 +129,6 @@ const MunicipalityOperator = () => {
           </div>
         )}
       </div>
-    </AdminLayout>
   );
 };
 

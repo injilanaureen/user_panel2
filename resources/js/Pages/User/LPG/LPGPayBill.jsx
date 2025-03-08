@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import AdminLayout from "@/Layouts/AdminLayout";
 import axios from "axios";
+import { User, FileText, DollarSign, CreditCard } from 'lucide-react'; // Icons for inputs
+
 
 const LPGPayBill = () => {
   const [formData, setFormData] = useState({
@@ -88,146 +89,164 @@ const LPGPayBill = () => {
   };
 
   return (
-    <AdminLayout>
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-bold">LPG Bill Payment</h1>
+
+    <div className="p-4 max-w-full md:p-6">
+      {/* Header with Penny Drop styling */}
+      <div className="flex justify-between items-center mb-4 md:mb-6">
+        <h1 className="text-xl font-bold bg-gradient-to-r from-green-900 via-green-500 to-pink-300 text-white p-3 rounded-lg shadow-lg text-center md:text-2xl">
+          LPG Bill Payment
+        </h1>
         <button
           onClick={toggleHistory}
-          className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+          className="bg-gray-500 text-white p-2 rounded-lg font-bold hover:bg-gray-600 hover:scale-105 transition duration-300 ease-in-out md:p-3"
         >
           {showHistory ? "Hide History" : "View History"}
         </button>
       </div>
-
-      <form onSubmit={handleSubmit} className="space-y-3">
-        <input
-          type="text"
-          name="canumber"
-          placeholder="Enter CA Number"
-          value={formData.canumber}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full"
-        />
-
-        <input
-          type="text"
-          name="referenceid"
-          placeholder="Enter Reference ID"
-          value={formData.referenceid}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full"
-        />
-
-        <input
-          type="number"
-          name="amount"
-          placeholder="Enter Amount"
-          value={formData.amount}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full"
-        />
-
-        <select
-          name="operator"
-          value={formData.operator}
-          onChange={handleChange}
-          required
-          className="border p-2 w-full"
-        >
-          <option value="">Select Operator</option>
-          {operators.map((op) => (
-            <option key={op.id} value={op.id}>
-              {op.name}
-            </option>
-          ))}
-        </select>
-
+    
+      {/* Form with Penny Drop styling */}
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="relative flex items-center group">
+          <span className="absolute left-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
+            <User size={24} className="text-blue-500 animate-bounce" />
+          </span>
+          <input
+            type="text"
+            name="canumber"
+            placeholder="CA NUMBER"
+            value={formData.canumber}
+            onChange={handleChange}
+            required
+            className="border border-gray-300 p-3 pl-8 mt-4 rounded-lg w-full focus:ring-2 focus:ring-blue-400 focus:border-blue-600 md:p-4 md:pl-12"
+          />
+        </div>
+    
+        <div className="relative flex items-center group">
+          <span className="absolute left-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
+            <FileText size={24} className="text-purple-500 animate-bounce" />
+          </span>
+          <input
+            type="text"
+            name="referenceid"
+            placeholder="REFERENCE ID"
+            value={formData.referenceid}
+            onChange={handleChange}
+            required
+            className="border border-gray-300 p-3 pl-8 mt-4 rounded-lg w-full focus:ring-2 focus:ring-blue-400 focus:border-blue-600 md:p-4 md:pl-12"
+          />
+        </div>
+    
+        <div className="relative flex items-center group">
+          <span className="absolute left-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
+            <DollarSign size={24} className="text-green-500 animate-bounce" />
+          </span>
+          <input
+            type="number"
+            name="amount"
+            placeholder="AMOUNT"
+            value={formData.amount}
+            onChange={handleChange}
+            required
+            className="border border-gray-300 p-3 pl-8 mt-4 rounded-lg w-full focus:ring-2 focus:ring-blue-400 focus:border-blue-600 md:p-4 md:pl-12"
+          />
+        </div>
+    
+        <div className="relative flex items-center group">
+          <span className="absolute left-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
+            <CreditCard size={24} className="text-orange-500 animate-bounce" />
+          </span>
+          <select
+            name="operator"
+            value={formData.operator}
+            onChange={handleChange}
+            required
+            className="border border-gray-300 p-3 pl-8 mt-4 rounded-lg w-full focus:ring-2 focus:ring-blue-400 focus:border-blue-600 md:p-4 md:pl-12"
+          >
+            <option value="">SELECT OPERATOR</option>
+            {operators.map((op) => (
+              <option key={op.id} value={op.id}>
+                {op.name}
+              </option>
+            ))}
+          </select>
+        </div>
+    
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className={`bg-blue-600 text-white p-2 rounded-lg font-bold hover:bg-blue-800 hover:scale-105 transition duration-300 ease-in-out w-full md:p-3 md:col-span-2 ${
+            loading ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
           disabled={loading}
         >
           {loading ? "Processing..." : "Pay Bill"}
         </button>
       </form>
-
-      {/* Display API Response */}
+    
+      {/* API Response with Penny Drop styling */}
       {apiResponse && (
-        <div className="mt-6 border border-gray-300 p-3">
-          <h2 className="text-lg font-semibold mb-2">API Response:</h2>
-
+        <div className="mt-6 bg-white p-4 rounded shadow-md md:mt-8 md:p-6">
+          <h2 className="text-lg font-semibold mb-2 text-gray-800 md:text-xl">API Response:</h2>
           {apiResponse.error ? (
-            <p className="text-red-500">{apiResponse.error}</p>
+            <p className="text-red-500 text-xs italic md:text-sm">{apiResponse.error}</p>
           ) : (
-            <table className="table-auto w-full border-collapse border border-gray-400">
-              <thead>
-                <tr className="bg-gray-200">
-                  <th className="border border-gray-400 px-4 py-2">Status</th>
-                  <th className="border border-gray-400 px-4 py-2">Response Code</th>
-                  <th className="border border-gray-400 px-4 py-2">Operator ID</th>
-                  <th className="border border-gray-400 px-4 py-2">Ack No</th>
-                  <th className="border border-gray-400 px-4 py-2">Message</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {apiResponse.status ? "Success" : "Failed"}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {apiResponse.response_code}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {apiResponse.operatorid}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {apiResponse.ackno}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {apiResponse.message}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="overflow-x-auto">
+              <table className="border-collapse border border-gray-400 w-full">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Status</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Response Code</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Operator ID</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ack No</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="hover:bg-gray-50 transition duration-200">
+                    <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{apiResponse.status ? "Success" : "Failed"}</td>
+                    <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{apiResponse.response_code}</td>
+                    <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{apiResponse.operatorid}</td>
+                    <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{apiResponse.ackno}</td>
+                    <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{apiResponse.message}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       )}
-
-      {/* Transaction History Section */}
+    
+      {/* Transaction History with Penny Drop styling */}
       {showHistory && (
-        <div className="mt-8">
-          <h2 className="text-lg font-semibold mb-4">Transaction History</h2>
+        <div className="mt-8 md:mt-10">
+          <h2 className="text-lg font-semibold mb-4 text-gray-800 md:text-xl">Transaction History</h2>
           {historyLoading ? (
-            <div className="text-center p-4">Loading history...</div>
+            <div className="text-center p-4 text-gray-600 md:p-6">Loading history...</div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
+              <table className="border-collapse border border-gray-400 w-full">
                 <thead>
-                  <tr className="bg-gray-100">
-                    <th className="p-3 text-left border">Date</th>
-                    <th className="p-3 text-left border">CA Number</th>
-                    <th className="p-3 text-left border">Reference ID</th>
-                    <th className="p-3 text-left border">Amount</th>
-                    <th className="p-3 text-left border">Operator</th>
-                    <th className="p-3 text-left border">Status</th>
-                    <th className="p-3 text-left border">Ack No</th>
-                    <th className="p-3 text-left border">Message</th>
+                  <tr className="bg-gray-200">
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold text-left md:p-3">Date</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold text-left md:p-3">CA Number</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold text-left md:p-3">Reference ID</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold text-left md:p-3">Amount</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold text-left md:p-3">Operator</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold text-left md:p-3">Status</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold text-left md:p-3">Ack No</th>
+                    <th className="border border-gray-400 p-2 text-gray-700 font-semibold text-left md:p-3">Message</th>
                   </tr>
                 </thead>
                 <tbody>
                   {transactions.map((transaction) => (
-                    <tr key={transaction.id} className="hover:bg-gray-50">
-                      <td className="p-3 border">
+                    <tr key={transaction.id} className="hover:bg-gray-50 transition duration-200">
+                      <td className="border border-gray-400 p-2 text-gray-600 md:p-3">
                         {new Date(transaction.created_at).toLocaleDateString()}
                       </td>
-                      <td className="p-3 border">{transaction.canumber}</td>
-                      <td className="p-3 border">{transaction.referenceid}</td>
-                      <td className="p-3 border">₹{transaction.amount}</td>
-                      <td className="p-3 border">{transaction.operator}</td>
-                      <td className="p-3 border">
+                      <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{transaction.canumber}</td>
+                      <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{transaction.referenceid}</td>
+                      <td className="border border-gray-400 p-2 text-gray-600 md:p-3">₹{transaction.amount}</td>
+                      <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{transaction.operator}</td>
+                      <td className="border border-gray-400 p-2 text-gray-600 md:p-3">
                         <span
                           className={`px-2 py-1 rounded-full text-sm ${
                             transaction.status === "Success"
@@ -240,8 +259,8 @@ const LPGPayBill = () => {
                           {transaction.status}
                         </span>
                       </td>
-                      <td className="p-3 border">{transaction.ackno}</td>
-                      <td className="p-3 border">{transaction.message}</td>
+                      <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{transaction.ackno}</td>
+                      <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{transaction.message}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -250,7 +269,7 @@ const LPGPayBill = () => {
           )}
         </div>
       )}
-    </AdminLayout>
+    </div>
   );
 };
 

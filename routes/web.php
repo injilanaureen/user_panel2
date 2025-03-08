@@ -25,6 +25,7 @@ use App\Http\Controllers\Refund2Controller;
 use App\Http\Controllers\UtilitybillPaymentController;
 use App\Http\Controllers\InsurancePremiumPaymentController;
 use App\Http\Controllers\FastagRechargeController;
+use App\Http\Controllers\LPGController;
 use App\Http\Controllers\Remitter2Controller;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;

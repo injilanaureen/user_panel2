@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AdminLayout from "@/Layouts/AdminLayout";
 import axios from "axios";
 
 const LPGStatus = () => {
@@ -48,7 +47,7 @@ const LPGStatus = () => {
   };
 
   return (
-    <AdminLayout>
+    <>
       <div className="p-6 bg-white rounded-lg shadow">
         <h1 className="text-2xl font-bold mb-4">LPG Status Check</h1>
 
@@ -149,7 +148,7 @@ const LPGStatus = () => {
           </div>
         )}
       </div>
-    </AdminLayout>
+    </>
   );
 };
 

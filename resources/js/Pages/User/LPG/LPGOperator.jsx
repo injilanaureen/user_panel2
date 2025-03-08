@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import AdminLayout from "@/Layouts/AdminLayout";
 import axios from "axios";
+import { Globe } from 'lucide-react'; // Icon for Mode selection
+
 
 const LPGOperator = () => {
   const [mode, setMode] = useState("online");
@@ -22,82 +23,88 @@ const LPGOperator = () => {
   };
 
   return (
-    <AdminLayout>
-      <h1 className="text-2xl font-bold mb-4">LPG Operators</h1>
 
-      {/* Dropdown for Mode Selection */}
-      <div className="mb-4">
-        <label className="block text-lg font-medium mb-2">Select Mode:</label>
-        <select
-          value={mode}
-          onChange={(e) => setMode(e.target.value)}
-          className="p-2  w-24 border rounded-md"
-        >
-          <option value="online">Online</option>
-          <option value="offline">Offline</option>
-        </select>
+    <div className="p-4 max-w-full md:p-6">
+      <h1 className="text-xl font-bold mb-4 bg-gradient-to-r from-green-900 via-green-500 to-pink-300 text-white p-3 rounded-lg shadow-lg text-center md:text-2xl md:mb-6">
+        LPG Operators
+      </h1>
+    
+      <div className="mb-4 md:mb-6">
+        <div className="relative flex items-center group">
+          <span className="absolute left-2 transition-transform duration-300 ease-in-out group-hover:scale-125">
+            <Globe size={24} className="text-blue-500 animate-bounce" />
+          </span>
+          <select
+            value={mode}
+            onChange={(e) => setMode(e.target.value)}
+            className="border border-gray-300 p-3 pl-8 mt-4 rounded-lg w-full focus:ring-2 focus:ring-blue-400 focus:border-blue-600 md:p-4 md:pl-12"
+          >
+            <option value="online">Online</option>
+            <option value="offline">Offline</option>
+          </select>
+        </div>
         <button
           onClick={fetchData}
-          className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="bg-blue-600 text-white p-2 rounded-lg font-bold hover:bg-blue-800 hover:scale-105 transition duration-300 ease-in-out mt-4 w-full md:mt-6 md:p-3"
         >
           Fetch Data
         </button>
       </div>
-
-      {/* Show API Response in Table */}
+    
+      {/* Loading, Error, or Table with Penny Drop styling */}
       {loading ? (
-        <p className="text-blue-600 font-semibold">Loading...</p>
+        <p className="text-blue-600 font-semibold text-sm md:text-base">Loading...</p>
       ) : error ? (
-        <p className="text-red-500">{error}</p>
+        <p className="text-red-500 text-xs italic md:text-sm">{error}</p>
       ) : data.length > 0 ? (
-        <div className="overflow-x-auto bg-white shadow-md rounded-lg p-4">
-          <table className="w-full border-collapse border border-gray-300">
+        <div className="overflow-x-auto bg-white shadow-md rounded-lg p-4 md:p-6">
+          <table className="border-collapse border border-gray-400 w-full">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="border p-2">ID</th>
-                <th className="border p-2">Name</th>
-                <th className="border p-2">Category</th>
-                <th className="border p-2">View Bill</th>
-                <th className="border p-2">Regex</th>
-                <th className="border p-2">Display Name</th>
-                <th className="border p-2">Ad1 Display Name</th>
-                <th className="border p-2">Ad1 Name</th>
-                <th className="border p-2">Ad1 Regex</th>
-                <th className="border p-2">Ad2 Display Name</th>
-                <th className="border p-2">Ad2 Name</th>
-                <th className="border p-2">Ad2 Regex</th>
-                <th className="border p-2">Ad3 Display Name</th>
-                <th className="border p-2">Ad3 Name</th>
-                <th className="border p-2">Ad3 Regex</th>
+              <tr className="bg-gray-200">
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">ID</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Name</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Category</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">View Bill</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Regex</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Display Name</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ad1 Display Name</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ad1 Name</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ad1 Regex</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ad2 Display Name</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ad2 Name</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ad2 Regex</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ad3 Display Name</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ad3 Name</th>
+                <th className="border border-gray-400 p-2 text-gray-700 font-semibold md:p-3">Ad3 Regex</th>
               </tr>
             </thead>
             <tbody>
               {data.map((item) => (
-                <tr key={item.id} className="text-center">
-                  <td className="border p-2">{item.id}</td>
-                  <td className="border p-2">{item.name}</td>
-                  <td className="border p-2">{item.category}</td>
-                  <td className="border p-2">{item.viewbill}</td>
-                  <td className="border p-2">{item.regex || "N/A"}</td>
-                  <td className="border p-2">{item.displayname || "N/A"}</td>
-                  <td className="border p-2">{item.ad1_d_name || "N/A"}</td>
-                  <td className="border p-2">{item.ad1_name || "N/A"}</td>
-                  <td className="border p-2">{item.ad1_regex || "N/A"}</td>
-                  <td className="border p-2">{item.ad2_d_name || "N/A"}</td>
-                  <td className="border p-2">{item.ad2_name || "N/A"}</td>
-                  <td className="border p-2">{item.ad2_regex || "N/A"}</td>
-                  <td className="border p-2">{item.ad3_d_name || "N/A"}</td>
-                  <td className="border p-2">{item.ad3_name || "N/A"}</td>
-                  <td className="border p-2">{item.ad3_regex || "N/A"}</td>
+                <tr key={item.id} className="hover:bg-gray-50 transition duration-200">
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.id}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.name}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.category}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.viewbill}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.regex || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.displayname || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.ad1_d_name || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.ad1_name || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.ad1_regex || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.ad2_d_name || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.ad2_name || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.ad2_regex || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.ad3_d_name || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.ad3_name || "N/A"}</td>
+                  <td className="border border-gray-400 p-2 text-gray-600 md:p-3">{item.ad3_regex || "N/A"}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       ) : (
-        <p className="text-gray-500">No data available</p>
+        <p className="text-gray-500 text-sm md:text-base">No data available</p>
       )}
-    </AdminLayout>
+    </div>
   );
 };
 

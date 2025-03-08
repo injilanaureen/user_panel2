@@ -30,3 +30,5 @@ class BillPayment extends Model
     ];
     protected $table='licbill_payments';
 }
+
+///lic pay bi;ll

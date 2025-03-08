@@ -24,9 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
 {
-    Inertia::share([
-        'user' => fn () => Auth::user(),  // Directly sharing user
-    ]);
+    Inertia::share([             'auth' => [                 'user' => auth()->user(), ], ]);
+ 
+
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");

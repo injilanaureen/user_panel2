@@ -7,7 +7,7 @@ export default function Welcome() {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#29665c] via-[#1d4b43] to-[#153832]">
+<div className="min-h-screen flex flex-col bg-gradient-to-br from-[#29665c] via-[#1d4b43] to-[#153832]">
             {/* Decorative Elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -top-48 -right-48 w-96 h-96 bg-[#3a7d71] rounded-full opacity-20 blur-3xl"></div>
@@ -17,23 +17,26 @@ export default function Welcome() {
             {/* Content */}
             <div className="relative z-10">
                 {/* Navigation */}
-                <nav className="w-full px-6 py-8 flex justify-between items-center">
-                    <div className="flex items-center">
-                        <ShoppingBag className="h-10 w-10 text-white" />
-                        <span className="text-3xl font-bold text-white ml-3">ShopPoint</span>
-                    </div>
-                    <div className="flex items-center space-x-6">
-                        <button 
-                            onClick={() => setIsLoginOpen(true)}
-                            className="bg-white text-[#29665c] px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-                        >
-                            Login
-                        </button>
-                    </div>
-                </nav>
+                <nav className="w-full px-6 py-4 flex justify-between items-center">
+
+    {/* Logo Container */}
+    <div className="h-40 w-40 flex items-center justify-center">
+            <img src="/corporate5.gif" className="h-full w-full object-contain" />
+        </div>
+    {/* Button */}
+    <div className="flex items-center space-x-6">
+        <button 
+            onClick={() => setIsLoginOpen(true)}
+            className="bg-white text-[#29665c] px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+        >
+            Login
+        </button>
+    </div>
+</nav>
+
 
                 {/* Hero Section */}
-                <div className="container mx-auto px-6 pt-20 pb-24">
+                <div className="container mx-auto px-6 h-full">
                     <div className="flex flex-col lg:flex-row items-center justify-between">
                         {/* Left Content with Enhanced Heading */}
                         <div className="w-full lg:w-1/2 mb-12 lg:mb-0">

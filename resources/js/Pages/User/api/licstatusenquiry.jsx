@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { CreditCard, Calendar, ClipboardList, Mail, Smartphone, FileText, DollarSign, CheckSquare, XSquare, Hash } from "lucide-react";
+
 
 const LICEnquiry = () => {
   const [statusReferenceId, setStatusReferenceId] = useState("");
@@ -73,16 +75,20 @@ const LICEnquiry = () => {
     <Card className="w-full max-w-2xl mx-auto">
       <CardContent className="p-6">
         <form onSubmit={checkStatus} className="space-y-4">
+          <div className="flex gap-1">
+          <CreditCard className="w-8 h-8 text-secondary_color" />
           <Input
             type="text"
             placeholder="Reference ID"
             value={statusReferenceId}
             onChange={(e) => setStatusReferenceId(e.target.value)}
             required
-            className="w-full"
+            className="w-full border-2 border-primary_color"
           />
+          </div>
+        
 
-          <Button type="submit" disabled={loading} className="w-full">
+          <Button type="submit" disabled={loading} className="w-full bg-primary_color text-black">
             {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Check Status"}
           </Button>
         </form>

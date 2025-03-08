@@ -25,6 +25,22 @@ export default {
     			sm: 'calc(var(--radius) - 4px)'
     		},
     		colors: {
+				primary_color: "#497D74",
+				secondary_color: "#296e62",
+				accent_color: "#29665c",
+				background_color: "#2a5e55",
+				hover_cover: "#1d524a",
+				subHover_cover: "#1b4a42",
+				subSubHover_cover: "#154039",
+				"green-light": "#d1fae5", // text-green-100
+				"gray-light": "#e5e7eb", // bg-gray-200
+				"white-light": "#ffffff", // bg-white
+				"green-dark": "#065f46", // text-green-900
+				"gray-dark": "#1f2937", // bg-gray-800
+				"white-dark": "#000000", // bg-black
+				"gray-lighter": "#f3f4f6", // bg-gray-100
+				"gray-darker": "#1f2937", // bg-gray-800
+				"hover-primary": "#ecfdf5", // hover:bg-primary-50
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
     			card: {
@@ -56,15 +72,15 @@ export default {
     				foreground: 'hsl(var(--destructive-foreground))'
     			},
     			border: 'hsl(var(--border))',
-    			input: 'hsl(var(--input))',
-    			ring: 'hsl(var(--ring))',
-    			chart: {
-    				'1': 'hsl(var(--chart-1))',
-    				'2': 'hsl(var(--chart-2))',
-    				'3': 'hsl(var(--chart-3))',
-    				'4': 'hsl(var(--chart-4))',
-    				'5': 'hsl(var(--chart-5))'
-    			}
+    			// input: 'hsl(var(--input))',
+    			// ring: 'hsl(var(--ring))',
+    			// chart: {
+    			// 	'1': 'hsl(var(--chart-1))',
+    			// 	'2': 'hsl(var(--chart-2))',
+    			// 	'3': 'hsl(var(--chart-3))',
+    			// 	'4': 'hsl(var(--chart-4))',
+    			// 	'5': 'hsl(var(--chart-5))'
+    			// }
     		}
     	}
     },

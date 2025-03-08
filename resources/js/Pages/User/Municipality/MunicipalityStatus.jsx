@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AdminLayout from "@/Layouts/AdminLayout";
 import axios from "axios";
 
 const MunicipalityStatus = () => {
@@ -28,7 +27,6 @@ const MunicipalityStatus = () => {
     }
   };
   return (
-    <AdminLayout>
       <div className="p-8 bg-gray-50 min-h-screen">
         <div className="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
           {/* Header */}
@@ -174,7 +172,6 @@ const MunicipalityStatus = () => {
           </div>
         </div>
       </div>
-    </AdminLayout>
   );
 };
 

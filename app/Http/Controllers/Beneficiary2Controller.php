@@ -15,6 +15,22 @@ use Illuminate\Support\Facades\Log;
 
 class Beneficiary2Controller extends Controller
 {
+
+    private $partnerId = 'PS005962'; 
+    private $secretKey = 'UFMwMDU5NjJjYzE5Y2JlYWY1OGRiZjE2ZGI3NThhN2FjNDFiNTI3YTE3NDA2NDkxMzM=';
+
+    private function generateJwtToken($requestId)
+    {
+        $timestamp = time();
+        $payload = [
+            'timestamp' => $timestamp,
+            'partnerId' => $this->partnerId,
+            'reqid' => $requestId
+        ];
+
+        return JWT::encode($payload, $this->secretKey, 'HS256');
+    }
+
    private function getBeneficiaries()
 {
     return RegisterBeneficiary2::latest()->get();
@@ -26,6 +42,9 @@ public function registerBeneficiaryOpen()
 
 public function registerBeneficiary(Request $request)
 {
+    $requestId = time() . rand(1000, 9999);
+    $jwtToken = $this->generateJwtToken($requestId);
+    
     if ($request->isMethod('post')) {
         $response = Http::withHeaders([
             'AuthorisedKey' => 'Y2RkZTc2ZmNjODgxODljMjkyN2ViOTlhM2FiZmYyM2I=',

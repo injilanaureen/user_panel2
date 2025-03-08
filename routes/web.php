@@ -72,6 +72,11 @@ Route::prefix('/upiservices')->group(function () {
 Route::prefix('/recharge')->group(function () {
     Route::get('/mobilerecharge', [UserController::class, 'mobilerecharge']);
     Route::get('/dthrecharge', [UserController::class, 'dthrecharge']);
+    
+    // New API routes for recharge functionality
+    Route::post('/fetch-operators', [RechargeController::class, 'fetchOperators']);
+    Route::post('/do-recharge', [RechargeController::class, 'doRecharge']);
+    Route::post('/check-status', [RechargeController::class, 'checkStatus']);
 });
 Route::prefix('/upi')->group(function () {
     Route::get('/dashboard', [UserController::class, 'upidashboard']);

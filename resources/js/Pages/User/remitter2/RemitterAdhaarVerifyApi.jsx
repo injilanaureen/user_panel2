@@ -16,7 +16,7 @@ const RemitterAdhaarApiVerify = ({ apiData, dbData, error }) => {
     if (!formData.mobile || !/^[0-9]{10}$/.test(formData.mobile)) {
       errors.mobile = 'Please enter a valid 10-digit mobile number';
     }
-    if (!formData.aadhaar_no || !/^[0-9]{16}$/.test(formData.aadhaar_no)) {
+    if (!formData.aadhaar_no || !/^[0-9]{12}$/.test(formData.aadhaar_no)) {
       errors.aadhaar_no = 'Please enter a valid Aadhaar number';
     }
     return errors;
@@ -168,7 +168,7 @@ const RemitterAdhaarApiVerify = ({ apiData, dbData, error }) => {
               name="aadhaar_no"
               value={formData.aadhaar_no}
               onChange={handleChange}
-              maxLength={16}
+              maxLength={12}
               placeholder="Enter Aadhaar number"
               className="border p-3 pl-8 rounded w-full focus:ring-2 focus:ring-blue-400 focus:border-blue-600 text-white-dark"
               style={{ backgroundColor: '#ffffff' }}
